@@ -4,7 +4,7 @@ info:
   title: 'Arch Lab Example API'
   description: API для группового чата
 servers:
-  - url: http://localhost:8083
+  - url: http://localhost:8081
     description: Example server
 paths:
   /load:
