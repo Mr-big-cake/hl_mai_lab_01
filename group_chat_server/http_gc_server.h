@@ -71,7 +71,7 @@ protected:
             database::GroupChat::init();
             database::ListUsers::init();
             database::Message::init();
-            ServerSocket svs(Poco::Net::SocketAddress("0.0.0.0", 8081));
+            ServerSocket svs(Poco::Net::SocketAddress("0.0.0.0", 8083));
             HTTPServer srv(new HTTPRequestFactory(DateTimeFormat::SORTABLE_FORMAT), svs, new HTTPServerParams);
             srv.start();
             waitForTerminationRequest();
