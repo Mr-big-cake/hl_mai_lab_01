@@ -1,0 +1,121 @@
+openapi: '3.0.0'
+info:
+  version: '1.0.0'
+  title: 'Arch Lab Example API'
+  description: API для P2P
+servers:
+  - url: http://localhost:8082
+    description: Example server
+paths:
+  /load:
+    get:
+      summary: Загрузка сообщений чата
+      parameters:
+      - name: id_sender
+        description: Уникальный идентификатор пользователя - отправитель
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: id_receiver
+        description: Уникальный идентификатор пользователя - получатель
+        in: query
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Сообщения
+          content:
+            application/json:
+              schema:
+               type: string
+        401:
+          description: Not find
+          content:
+            application/json:
+              schema:
+                type: string
+  /send: #Message
+    post:
+      summary: Создание нового сообщения
+      parameters:
+      - name: id_sender
+        description: id пользователя
+        in: query 
+        required: true
+        schema:
+          type: integer
+      - name: id_receiver
+        description: Оп
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: text_message
+        description: Текст сообщения 
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Message ID
+          content:
+            application/json:
+              schema:
+               type: string
+        401:
+          description: Not create
+          content:
+            application/json:
+              schema:
+                type: string
+components:
+  schemas:
+    user_id:
+      description: Уникальный идентификатор пользователя
+      type: integer
+    users:
+      type: array
+      items:
+        $ref: '#/components/schemas/user'
+    user:
+      type: object
+      required:
+        - id
+        - first_name
+        - last_name
+        - email
+        - title
+        - login
+        - password
+      properties:
+        id:
+          $ref: '#/components/schemas/user_id'
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        title:
+          type: string
+        login:
+          type: string
+        password:
+          type: string
+    Error:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          description: Сообщение о ошибке
+          type: string
+  securitySchemes:
+      basicAuth:     
+        type: http
+        scheme: basic
+security:
+  - basicAuth: []

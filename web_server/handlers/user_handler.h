@@ -193,6 +193,7 @@ public:
                 std::ostream &ostr = response.send();
                 Poco::JSON::Stringifier::stringify(root, ostr);
                 return;
+                
             }
             else if (hasSubstr(request.getURI(), "/search"))
             {

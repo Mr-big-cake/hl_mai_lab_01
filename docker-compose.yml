@@ -57,6 +57,44 @@ services:
     networks:
       - arch-network
 
+  p2p_server:
+    build:
+      context: p2p_server
+      dockerfile: Dockerfile
+    container_name: p2p_server
+    environment:
+      - DB_HOST=mai-db-node-ex01
+      - DB_PORT=3306
+      - DB_LOGIN=stud
+      - DB_PASSWORD=stud
+      - DB_DATABASE=archdb
+      - SERVICE_HOST=my_service
+    ports:
+      - 8082:8082
+    networks:
+      - arch-network
+    depends_on:
+      mai-db-node-ex01:
+        condition: service_healthy
+  group_chat_server:
+    build:
+      context: group_chat_server
+      dockerfile: Dockerfile
+    container_name: group_chat_server
+    environment:
+      - DB_HOST=mai-db-node-ex01
+      - DB_PORT=3306
+      - DB_LOGIN=stud
+      - DB_PASSWORD=stud
+      - DB_DATABASE=archdb
+      - SERVICE_HOST=my_service
+    ports:
+      - 8081:8081
+    networks:
+      - arch-network
+    depends_on:
+      mai-db-node-ex01:
+        condition: service_healthy
 volumes:
   db-node-ex01-data:
 

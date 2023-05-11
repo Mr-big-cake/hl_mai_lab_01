@@ -1,4 +1,4 @@
-#pragma once
+//#pragma once
 
 #include "Poco/Net/HTTPServer.h"
 #include "Poco/Net/HTTPRequestHandler.h"
@@ -37,7 +37,7 @@ using Poco::Util::OptionSet;
 using Poco::Util::OptionCallback;
 using Poco::Util::HelpFormatter;
 
-#include "handlers/user_handler.h"
+#include "handlers/gc_handler.h"
 
 
 class HTTPRequestFactory: public HTTPRequestHandlerFactory
@@ -53,10 +53,16 @@ public:
     {
 
         std::cout << "request:" << request.getURI()<< std::endl;
-        if (hasSubstr(request.getURI(),"/user") ||
-            hasSubstr(request.getURI(),"/search") ||
-            hasSubstr(request.getURI(),"/auth")) 
-            return new UserHandler(_format);
+        if (
+        hasSubstr(request.getURI(),"/create_gc") // Group_Chat
+        || 
+        hasSubstr(request.getURI(),"/add_lu") // List_Users
+        || 
+        hasSubstr(request.getURI(),"/send") // Message
+        || 
+        hasSubstr(request.getURI(),"/load") // Message
+        ) //// 
+            return new GroupChatHandler(_format);
         return 0;
     }
 

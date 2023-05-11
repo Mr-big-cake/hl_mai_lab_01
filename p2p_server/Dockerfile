@@ -6,4 +6,4 @@ RUN git clone -b master https://github.com/pocoproject/poco.git && cd poco && mk
 RUN git clone https://github.com/Mr-big-cake/hl_mai_lab_01.git
 RUN sudo ldconfig
 RUN cd hl_mai_lab_01 && mkdir build && cd build && cmake  .. && make
-ENTRYPOINT [ "hl_mai_lab_01/build/other_service" ]
+ENTRYPOINT [ "hl_mai_lab_01/build/p2p_service" ]
