@@ -32,9 +32,7 @@ namespace database
                         << "`text_message` VARCHAR(1024) NULL,"
                         << "`date_time` DATETIME DEFAULT NOW(),"
                         << "`is_changed` BOOLEAN DEFAULT FALSE,"
-                        << "PRIMARY KEY (`id_message`),"
-                        << "FOREIGN KEY (`id_chat`) REFERENCES `GroupChat`(id_chat), "
-                        << "FOREIGN KEY (`id_sender`) REFERENCES `User`(id));", 
+                        << "PRIMARY KEY (`id_message`));", 
                 now;
             
         }
