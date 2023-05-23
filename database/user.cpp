@@ -48,7 +48,7 @@ namespace database
 
             Statement create_seqs(session);
 
-            create_seqs <<"create table IF NOT EXISTS Seqs(id int not null primary key auto_increment);",now;
+            create_seqs <<"Create table IF NOT EXISTS RealId(id int not null primary key auto_increment);",now;
 
             std::cout << create_seqs.toString() << std::endl;
         }
