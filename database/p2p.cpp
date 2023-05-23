@@ -29,9 +29,7 @@ namespace database
                         << "`id_sender` INT NOT NULL,"
                         << "`id_receiver` INT NOT NULL,"
                         << "`text_message` VARCHAR(1024) NULL,"
-                        << "PRIMARY KEY (`id`),"
-                        << "FOREIGN KEY (`id_sender`) REFERENCES `User`(id), "
-                        << "FOREIGN KEY (`id_receiver`) REFERENCES `User`(id));", 
+                        << "PRIMARY KEY (`id`));", 
                 now;
             
         }

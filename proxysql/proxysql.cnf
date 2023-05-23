@@ -23,8 +23,8 @@ mysql_variables=
     interfaces="0.0.0.0:6033"
     default_schema="information_schema"
     server_version="8.0.17 (ProxySQL)"
-    monitor_username="msguser"
-    monitor_password="msguser"
+    monitor_username="stud"
+    monitor_password="stud"
     monitor_ping_interval=10000
 }
 
@@ -34,15 +34,21 @@ mysql_variables=
 mysql_servers =
 (
     {
-        address="msgdb-node-1"
+        address="db-node-1"
         port=3306
         hostgroup=0
         max_connections=200
     },
     {
-        address="msgdb-node-2"
+        address="db-node-2"
         port=3306
         hostgroup=1
+        max_connections=200
+    }
+        {
+        address="db-node-3"
+        port=3306
+        hostgroup=2
         max_connections=200
     }
 )
@@ -54,8 +60,8 @@ mysql_servers =
 mysql_users:
 (
     {
-    	username = "msguser"
-    	password = "msguser"
+    	username = "stud"
+    	password = "stud"
     	default_hostgroup = 0
     	max_connections=200
     	default_schema="information_schema"
@@ -80,6 +86,13 @@ mysql_query_rules:
         rule_id=2
         active=1
         match_pattern="-- sharding:1"
+        destination_hostgroup=1
+        apply=1
+    }
+        {
+        rule_id=3
+        active=1
+        match_pattern="-- sharding:2"
         destination_hostgroup=1
         apply=1
     }
