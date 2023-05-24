@@ -21,9 +21,10 @@ namespace database
 
     void User::init()
     {
+        std::cout<<"$$11";
         try
         {
-
+            std::cout<<"$$12";
             Poco::Data::Session session = database::Database::get().create_session();
 
             for (auto &hint : database::Database::get_all_hints())
@@ -41,16 +42,18 @@ namespace database
                             << "PRIMARY KEY (`id`),KEY `fn` (`first_name`),KEY `ln` (`last_name`));"
                             << hint,
                     now;
-                
+                std::cout<<"$$13";
                 std::cout << create_stmt.toString() << std::endl;
+                std::cout<<"$$14";
             }
 
-
+            std::cout<<"$$15";
             Statement create_seqs(session);
-
+            std::cout<<"$$16";
             create_seqs <<"Create table IF NOT EXISTS RealId(id int not null primary key auto_increment);",now;
-
+            std::cout<<"$$17";
             std::cout << create_seqs.toString() << std::endl;
+            std::cout<<"$$18";
         }
 
         catch (Poco::Data::MySQL::ConnectionException &e)
